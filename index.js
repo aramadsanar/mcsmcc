@@ -1,11 +1,14 @@
+const express = require('express');
+const app = express();
 
-const db = require('./dbconnection/dbconnection');
-const {Menu, insertMenu} = require('./models/menu');
+const bodyParser = require('body-parser');
+const menus = require('./routes/menus');
+const deviceinit = require('./routes/deviceinit');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use('/api/menus', menus);
+app.use('/api/deviceinit', deviceinit);
 
-let menuEntry = JSON.parse(
-    JSON.stringify(
-        new Menu("ayam ganja", "masakan mabok", 50000)
-    )
-);
-insertMenu("haha", "ihi", 5000)
+const port = process.env.PORT || 3000;
+app.listen(port, () => {console.log(`on port ${port}`)})
