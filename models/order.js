@@ -3,6 +3,8 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const Joi = require('joi');
 Joi.ObjectId = require('joi-objectid')(Joi);
 const {menus} = require('./menu');
+const orders = db.collection('orders');
+
 
 function Order(name, tableNumber, menus, totalPrice) {
     this.name = name,
@@ -11,19 +13,32 @@ function Order(name, tableNumber, menus, totalPrice) {
     this.totalPrice = totalPrice
 }
 
+async function calculateTotalPrice(expandedMenu) {
+    let totalPrice = 0;
+    for (item of expandedMenu) {
+        totalPrice += (item.menuPrice * item.quantity)
+    }
+
+    return totalPrice;
+}
+
 async function insertOrder(name, tableNumber, menus, totalPrice) {
     let newObjectId = ObjectId();
-    let isMenuValid = validateMenuList(menus);
+    let expandedMenu = await validateAndExpandMenuList(menus);
+    let calculatedTotalPrice = await calculateTotalPrice(expandedMenu);
 
-    if (!isMenuValid) return null;
+    //if (totalPrice != calculateTotalPrice) return new Error("price is tampered");
+
+    console.log(expandedMenu)
+    if (!expandedMenu) return null;
     let menuEntry = JSON.parse(
         JSON.stringify(
-            new Order(name, tableNumber, menus, totalPrice)
+            new Order(name, tableNumber, expandedMenu, calculatedTotalPrice)
         )
     );
 
-    let newMenuEntry = await db.collection('menus').doc(newObjectId.toString()).set(menuEntry);
-    
+    let newMenuEntry = await orders.doc(newObjectId.toString()).set(menuEntry);
+    return newObjectId.toString();
 }
 
 async function validateMenuId(menuId) {
@@ -33,27 +48,33 @@ async function validateMenuId(menuId) {
     return Joi.validate(menuId, validationSchema);
 }
 
-async function checkMenuExistence(menuId) {
-    let menuCursor = await menus.doc(menuId.menuId).get();
+async function getMenu(menuId) {
+    let menuCursor = await menus.doc(menuId).get();
     let menuExists = menuCursor.exists;
 
-    return menuExists;
+    if (menuExists) return menuCursor.data();
+    else return null;
 }
-async function validateMenuList(menuList) {
-    for (menuId of menuList) {
-        let {error} = validateMenuId({menuId: menuId});
 
-        let menuExists = await checkMenuExistence(menuId);
-        if (error || !menuExists) return false;
+async function validateAndExpandMenuList(menuList) {
+    let expandedMenu = [];
+    for (menuEntry of menuList) {
+        let {error} = validateMenuId({menuId: menuEntry.menuId});
+        let menu = await getMenu(menuEntry.menuId);
+
+        if (error || !menu) return null;
+        menu.quantity = menuEntry.quantity;
+        expandedMenu.push(menu)
     }
+    return expandedMenu;
 }
 
 function validateOrder(menu) {
     const validationSchema = {
         name: Joi.string().required(),
-        tableNumber: Joi.string().required(),
+        tableNumber: Joi.string().minlength(1).required(),
         menus: Joi.array().minlength(1).required(),
-        totalPrice: Joi.number().required()
+        totalPrice: Joi.number().min(0).required()
     };
 
     return Joi.validate(menu, validationSchema);
@@ -62,3 +83,4 @@ function validateOrder(menu) {
 module.exports.Order = Order;
 module.exports.insertOrder = insertOrder;
 module.exports.validateOrder = validateOrder;
+module.exports.orders = orders;
