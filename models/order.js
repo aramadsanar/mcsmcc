@@ -6,11 +6,13 @@ const {menus} = require('./menu');
 const orders = db.collection('orders');
 
 
-function Order(name, tableNumber, menus, totalPrice) {
+function Order(orderId, name, tableNumber, menus, totalPrice) {
+    this.orderId = orderId,
     this.name = name,
     this.tableNumber = tableNumber,
     this.menus = menus,
-    this.totalPrice = totalPrice
+    this.totalPrice = totalPrice,
+    this.orderDelivered = false
 }
 
 async function calculateTotalPrice(expandedMenu) {
@@ -22,7 +24,7 @@ async function calculateTotalPrice(expandedMenu) {
     return totalPrice;
 }
 
-async function insertOrder(name, tableNumber, menus, totalPrice) {
+async function insertOrder(name, tableNumber, menus) {
     let newObjectId = ObjectId();
     let expandedMenu = await validateAndExpandMenuList(menus);
     let calculatedTotalPrice = await calculateTotalPrice(expandedMenu);
@@ -33,12 +35,13 @@ async function insertOrder(name, tableNumber, menus, totalPrice) {
     if (!expandedMenu) return null;
     let menuEntry = JSON.parse(
         JSON.stringify(
-            new Order(name, tableNumber, expandedMenu, calculatedTotalPrice)
+            new Order(newObjectId.toString(), name, tableNumber, expandedMenu, calculatedTotalPrice)
         )
     );
 
     let newMenuEntry = await orders.doc(newObjectId.toString()).set(menuEntry);
-    return newObjectId.toString();
+    
+    return menuEntry;
 }
 
 async function validateMenuId(menuId) {
@@ -72,9 +75,9 @@ async function validateAndExpandMenuList(menuList) {
 function validateOrder(menu) {
     const validationSchema = {
         name: Joi.string().required(),
-        tableNumber: Joi.string().minlength(1).required(),
-        menus: Joi.array().minlength(1).required(),
-        totalPrice: Joi.number().min(0).required()
+        tableNumber: Joi.string().required(),
+        menus: Joi.array().required(),
+        //totalPrice: Joi.number().min(0).required()
     };
 
     return Joi.validate(menu, validationSchema);
