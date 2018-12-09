@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     let menus = await getAllMenus();
 
-    res.send(menus)
+    return res.send(menus);
 })
 
 router.post('/', async (req, res) => {
@@ -15,21 +15,25 @@ router.post('/', async (req, res) => {
         menuPrice: req.body.menuPrice
     };
 
+    const {error} = validateMenu(newMenu);
+
+    if (error) return res.status(400).send(error.message);
+
     newMenu.menuId = await insertMenu(
         newMenu.menuName,
         newMenu.menuType,
         newMenu.menuPrice
     );
 
-    res.send(newMenu)
+    return res.send(newMenu)
 });
 
 router.get('/:id', async (req, res) => {
     let menu = await getSingleMenu(req.params.id);
 
-    if (!menu) res.status(404).send("Menu DNE")
+    if (!menu) return res.status(404).send("Menu DNE")
 
-    res.send(menu)
+    return res.send(menu)
 })
 
 async function getAllMenus() {
