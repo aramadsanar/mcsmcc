@@ -1,0 +1,93 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="themes/pertemuan2.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="scripts/load_menus.js"></script>
+</head>
+<body>
+	<div data-role="page" data-theme="a">
+		<div data-role="header" data-position="inline">
+			<h1>Menus</h1>
+		</div>
+
+
+
+		<div data-role="tabs" id="tabs">
+			<div data-role="navbar">
+					<!-- snack
+					lain
+					spesial
+					mie
+					express_bowl
+					minuman
+					 -->
+			  <ul>
+				<li><a href="#express_bowl" data-ajax="false">Express Bowl</a></li>
+				<li><a href="#spesial" data-ajax="false">Spesial</a></li>
+				<li><a href="#mie" data-ajax="false">Mie</a></li>
+				<li><a href="#minuman" data-ajax="false">Minuman</a></li>
+				<li><a href="#snack" data-ajax="false">Snack</a></li>
+				<li><a href="#lain" data-ajax="false">Lainnya</a></li>
+			  </ul>
+			</div>
+			
+			<div id="express_bowl" >
+				<div data-role="content" data-theme="a">
+					<ul data-role="listview" data-inset="true" id="menusListView">
+						<li data-role="list-divider">Express Bowl</li>
+						
+					</ul>
+				</div>
+			</div>
+			<div id="spesial">
+				<div data-role="content" data-theme="a">
+					<ul data-role="listview" data-inset="true" id="menusListView">
+						<li data-role="list-divider">Spesial</li>
+						
+					</ul>
+				</div>
+			</div>
+			<div id="mie" >
+				<div data-role="content" data-theme="a">
+					<ul data-role="listview" data-inset="true" id="menusListView">
+						<li data-role="list-divider">Mie</li>
+						
+					</ul>
+				</div>
+			</div>
+			<div id="minuman" >
+				<div data-role="content" data-theme="a">
+					<ul data-role="listview" data-inset="true" id="menusListView">
+						<li data-role="list-divider">Minuman</li>
+						
+					</ul>
+				</div>
+			</div>
+			<div id="snack" >
+				<div data-role="content" data-theme="a">
+					<ul data-role="listview" data-inset="true" id="menusListView">
+						<li data-role="list-divider">Snack</li>
+						
+					</ul>
+				</div>
+			</div>
+			<div id="lain" >
+				<div data-role="content" data-theme="a">
+					<ul data-role="listview" data-inset="true" id="menusListView">
+						<li data-role="list-divider">Lainnya</li>
+						
+					</ul>
+				</div>
+			</div>
+	  	</div>
+
+		<!--  -->
+	</div>
+</body>
+</html>

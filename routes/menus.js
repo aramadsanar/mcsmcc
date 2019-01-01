@@ -10,23 +10,34 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     let newMenu = {
-        menuName: req.body.menuName,
-        menuType: req.body.menuType,
-        menuPrice: req.body.menuPrice
+        menu_name: req.body.menu_name,
+        menu_category: req.body.menu_category,
+        menu_price: req.body.menu_price,
+        menu_image: req.body.menu_image
     };
 
     const {error} = validateMenu(newMenu);
 
     if (error) return res.status(400).send(error.message);
 
-    newMenu.menuId = await insertMenu(
-        newMenu.menuName,
-        newMenu.menuType,
-        newMenu.menuPrice
+    newMenu.menu_id = await insertMenu(
+        newMenu.menu_name,
+        newMenu.menu_category,
+        newMenu.menu_price,
+        newMenu.menu_image
     );
 
     return res.send(newMenu)
 });
+
+router.get('/getByCategory/:menu_category', async (req, res) => {
+    let menus = await getMenuByCategory(req.params.menu_category);
+
+    //if (!menus) return res.status(404).send("Menu DNE")
+
+    return res.send(menus)
+})
+
 
 router.get('/:id', async (req, res) => {
     let menu = await getSingleMenu(req.params.id);
@@ -40,8 +51,11 @@ async function getAllMenus() {
     let cursor = await menus.get();
 
     var queryResult = [];
-    for (menu of cursor.docs) {
-        queryResult.push(menu.data())
+    for (menuDocument of cursor.docs) {
+        let menu = menuDocument.data();
+        menu['document_id'] = menuDocument.id;
+        console.log(menu)
+        queryResult.push(menu)
     }
 
     return queryResult;
@@ -54,6 +68,21 @@ async function getSingleMenu(menuId) {
         return itemCursor.data();
     else
         return null;
+}
+
+
+async function getMenuByCategory(menu_category) {
+    let cursor = await menus.where('menu_category', '==', menu_category).get();
+    //console.log(cursor.docs)
+    var queryResult = [];
+    for (menuDocument of cursor.docs) {
+        let menu = menuDocument.data();
+        menu['document_id'] = menuDocument.id;
+        console.log(menu)
+        queryResult.push(menu)
+    }
+
+    return queryResult;
 }
 
 module.exports = router;

@@ -1,0 +1,49 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="themes/pertemuan2.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="init.js"></script>
+</head>
+
+<body>
+	<div data-role="page" data-theme="a">
+		<div data-role="header" data-position="inline">
+			<h1>BUY TICKETS</h1>
+		</div>
+		<div data-role="content" data-theme="a">
+			<form id="f_buy_ticket" data-ajax="false">
+				<input type="text" name="txt_name" id="txt_name" placeholder="Ticket Name">
+				<input type="number" name="txt_year" id="txt_year" placeholder="Release Year">
+				<input type="number" name="txt_price" id="txt_price" placeholder="Ticket Price">
+				<input type="submit" value="Buy">
+				<input type="reset" value="Reset">
+			</form>
+		</div>
+
+
+
+		<footer data-role="footer" data-position="fixed">
+
+			<div data-role="navbar">
+
+				<ul>
+
+					<li>
+						<a href="#" data-icon="grid">Toko Kita</a>
+					</li>
+				</ul>
+			</div>
+			<!-- /navbar -->
+		</footer>
+		<!-- /footer -->
+	</div>
+</body>
+
+</html>

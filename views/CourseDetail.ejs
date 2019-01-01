@@ -1,0 +1,30 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="themes/pertemuan2.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="load_course.js"></script>
+</head>
+<body>
+	<div data-role="page" data-theme="a">
+		<div data-role="header" data-position="inline">
+			<h1 id="mainCourseTitle">Main Course Title</h1>
+		</div>
+		<div data-role="content" data-theme="a">
+			<ul data-role="listview" data-inset="true" id="courseView">
+				<li data-role="list-divider" id="courseTitle" style="text-align: center">Course Title</li>
+                <iframe src="#" frameborder="0" id="courseVideoIframe" style="width: 100%;height: 100%;"></iframe>
+                <li data-role="list-divider" id="courseDescription">Description</li>
+                <li data-role="list-divider">
+                        <button id="addCourseButton">Add Course</button>
+                </li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
