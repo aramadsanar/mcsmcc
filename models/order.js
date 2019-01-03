@@ -18,7 +18,7 @@ function Order(orderId, name, tableNumber, menus, totalPrice) {
 async function calculateTotalPrice(expandedMenu) {
     let totalPrice = 0;
     for (item of expandedMenu) {
-        totalPrice += (item.menuPrice * item.quantity)
+        totalPrice += (item.menu_price * item.quantity)
     }
 
     return totalPrice;

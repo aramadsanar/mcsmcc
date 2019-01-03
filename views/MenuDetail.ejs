@@ -1,1 +1,33 @@
-haha
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Theme Download</title>
+	<link rel="stylesheet" href="http://localhost:9000/app/themes/pertemuan2.min.css" />
+	<link rel="stylesheet" href="http://localhost:9000/app/themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="http://localhost:9000/app/scripts/load_menu_detail.js"></script>
+</head>
+<body>
+	<div data-role="page" data-theme="a">
+		<div data-role="header" data-position="inline">
+			<h1 id="menuName">Main Course Title</h1>
+		</div>
+		<div data-role="content" data-theme="a">
+			<ul data-role="listview" data-inset="true" id="menuView">
+				<img src="#" frameborder="0" id="menuImage" ></iframe>
+				<!-- <li data-role="list-divider" id="menuName" style="text-align: center">Menu Name</li> -->
+				<li data-role="list-divider" id="menuPrice">Price</li>
+				<li data-role="list-divider">
+					<input type="number" data-clear-btn="true" name="number-4" pattern="[0-9]*" id="orderCount" value="">
+				</li>
+                <li data-role="list-divider">
+                        <button id="addToCartButton">Add to Cart</button>
+                </li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
