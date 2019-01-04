@@ -1,10 +1,11 @@
 $(document).ready(loadCartItems);
 let TOTAL_CART = 0;
+let ORDER = null;
 function loadCartItems(event) {
 
     let cartList = $('#menusListView');
     let order = JSON.parse(localStorage.getItem('order'))
-
+    ORDER = order;
     if (order) {
         let items = order['menus']
 
@@ -93,5 +94,7 @@ function makeMenuControls(menu, quantity) {
 }
 
 function insertCartTotal(cartList) {
-    cartList.append(`<li data-role="list-divider">${TOTAL_CART}</li>`);
+    cartList.append(`<li data-role="list-divider">${TOTAL_CART}
+    ${ORDER['name']}
+    ${ORDER['tableNumber']}</li>`);
 }

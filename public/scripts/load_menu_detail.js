@@ -19,7 +19,8 @@ function loadMenuIntoView() {
         let order = JSON.parse(localStorage.getItem('order'));
         let updateEntry = {
             menuId: CURRENT_MENU_ID,
-            quantity: $('#orderCount').val()
+            quantity: $('#orderCount').val(),
+            price: parseInt($('#menuPrice').text())
         };
         if (order) {
             let idxOfItemInOrder = order['menus'].findIndex(
@@ -28,7 +29,7 @@ function loadMenuIntoView() {
                 }
             )
 
-            if (idxOfItemInOrder > 0) {
+            if (idxOfItemInOrder > -1) {
                 order['menus'][idxOfItemInOrder] = updateEntry;
             } else {
                 order['menus'].push(updateEntry);
@@ -39,7 +40,9 @@ function loadMenuIntoView() {
             let new_order = {
                 name: '',
                 tableNumber: '',
-                menus: []
+                menus: [],
+                orderId: '',
+                finalized: false
             }
 
             new_order.menus.push(updateEntry);

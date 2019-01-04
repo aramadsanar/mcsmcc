@@ -46,7 +46,7 @@ async function insertOrder(name, tableNumber, menus) {
 
 async function validateMenuId(menuId) {
     const validationSchema = {
-        menuId: Joi.ObjectId().required()
+        menuId: Joi.string().required()
     }
     return Joi.validate(menuId, validationSchema);
 }

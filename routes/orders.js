@@ -20,6 +20,7 @@ router.get('/:id', async(req, res) => {
 })
 
 router.post('/', async(req, res) => {
+    console.log(req.body)
     const {error} = validateOrder(req.body);
     if (error) return res.status(400).send(error.message);
 
