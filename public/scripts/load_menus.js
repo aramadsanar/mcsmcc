@@ -1,6 +1,6 @@
-$(document).ready(loadMenus);
+$(document).ready(loadmenu);
 
-function loadMenus(event) {
+/*function loadMenus(event) {
 
     //for each tabs, load the category data
     $('div', '#tabs').each(function() {
@@ -34,10 +34,25 @@ function loadCategory(categoryControl) {
         }
     )
 
+}*/
+
+function loadmenu(){
+
+    $.ajax(
+        {
+            url: 'http://127.0.0.1:9000/api/menus',
+            
+            //success callback accepts only one param that is result?
+            //jack up the success callback and reutilize old function
+            success: function(result) {
+                //loadMenusDataToView(menuCategoryTab, result);
+                makeMenuControls(result);
+            }
+        }
+    )
 }
 
 //everything down here is obvious, no explanation needed
-
 function loadMenusDataToView(menuCategoryTab, result) {
     console.log(result)
     //let parsedResult = JSON.parse(result);
@@ -55,9 +70,13 @@ function makeMenuControls(menu) {
             <img src="${menu['menu_image']}">
         <h2>${menu['menu_name']}</h2>
         <p>${menu['menu_price']}</p></a>
-            <a href="/app/menu_detail/${menu['document_id']}" target="_self" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
+            <a href="/app/menu_detail/${menu['document_id']}" target="_self" data-rel="popup" data-position-to="window" data-transition="pop">Purchase</a>
         </li>
     `
+
+    var mView = $('#menusListView').append(htmlCode);
+    mView.listview('refresh');
+    
 
 
 
@@ -69,6 +88,5 @@ function makeMenuControls(menu) {
     		
 	// 	</a>
     // </li>`
-    return htmlCode;
+    return mView;
 }
-
