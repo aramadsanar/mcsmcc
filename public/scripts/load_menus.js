@@ -1,4 +1,4 @@
-$(document).ready(loadmenu);
+$(document).ready(akuLoad);
 
 /*function loadMenus(event) {
 
@@ -36,15 +36,15 @@ function loadCategory(categoryControl) {
 
 }*/
 
-function loadmenu(){
+function loadmenu() {
 
     $.ajax(
         {
             url: 'http://127.0.0.1:9000/api/menus',
-            
+
             //success callback accepts only one param that is result?
             //jack up the success callback and reutilize old function
-            success: function(result) {
+            success: function (result) {
                 //loadMenusDataToView(menuCategoryTab, result);
                 makeMenuControls(result);
             }
@@ -56,7 +56,7 @@ function loadmenu(){
 function loadMenusDataToView(menuCategoryTab, result) {
     console.log(result)
     //let parsedResult = JSON.parse(result);
-    
+
     for (let menu of result) {
         menuCategoryTab.append(makeMenuControls(menu));
     }
@@ -76,17 +76,41 @@ function makeMenuControls(menu) {
 
     var mView = $('#menusListView').append(htmlCode);
     mView.listview('refresh');
-    
 
 
 
-	// var htmlCode = `
-	// <li>
-	// 	<a href=">
+
+    // var htmlCode = `
+    // <li>
+    // 	<a href=">
     // 		<h2></h2>
     // 		<p><h3></h3></p>
-    		
-	// 	</a>
+
+    // 	</a>
     // </li>`
     return mView;
+}
+
+function akuLoad() {
+    $.ajax({
+        url: 'http://127.0.0.1:9000/api/menus',
+        success: function (result) {
+            //loadMenusDataToView(menuCategoryTab, result);
+            //makeMenuControls(result);
+            console.log(result);
+            for (let menu of result) {
+                var htmlCode = `
+        <li><a href="/app/menu_detail/${menu['document_id']}" target="_self">
+            <img src="${menu['menu_image']}">
+        <h2>${menu['menu_name']}</h2>
+        <p>${menu['menu_price']}</p></a>
+            <a href="/app/menu_detail/${menu['document_id']}" target="_self" data-rel="popup" data-position-to="window" data-transition="pop">Purchase</a>
+        </li>
+    `
+                $('#menusListView').append(htmlCode);
+            }
+
+        }
+    }
+    )
 }
