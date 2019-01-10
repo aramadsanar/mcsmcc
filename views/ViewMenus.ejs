@@ -4,14 +4,16 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Welcome!</title>
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.js" integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
+	 crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	 crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
 	 crossorigin="anonymous"></script>
 	<script src="scripts/load_menus.js"></script>
 	<link rel="stylesheet" href="css/core-style.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+	 crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:100,400,500,600,700" rel="stylesheet">
 </head>
 
@@ -42,26 +44,60 @@
 				</ul>
 			</nav>
 		</header>
-		<div class="shop_sidebar_area shader">
-			<div class="widget catagory mb-50">
-				<h6 class="widget-title mb-30">Catagories</h6>
-				<div class="catagories-menu">
-					<ul>
-						<li class="active"><a href="#express_bowl">Express Bowl</a></li>
-						<li><a href="#spesial" data-ajax="false">Spesial</a></li>
-						<li><a href="#mie" data-ajax="false">Mie</a></li>
-						<li><a href="#minuman" data-ajax="false">Minuman</a></li>
-						<li><a href="#snack" data-ajax="false">Snack</a></li>
-						<li><a href="#lain" data-ajax="false">Lainnya</a></li>
-					</ul>
+
+		<div class="col bg-n-white1" id="myTab">
+			<div class="sticky-offset">
+				<div class="widget catagory mb-50 mt-5">
+					<h6 class="widget-title" style="margin-left:20px;">Catagories</h6>
+					<div class="catagories-menu">
+						<ul class="nav nav-tabs">
+							<li class="nav-item"><a href="#express_bowl">Express Bowl</a></li>
+							<li class="nav-item"><a href="#spesial" data-ajax="false">Spesial</a></li>
+							<li class="nav-item"><a href="#mie" data-ajax="false">Mie</a></li>
+							<li class="nav-item"><a href="#minuman" data-ajax="false">Minuman</a></li>
+							<li class="nav-item"><a href="#snack" data-ajax="false">Snack</a></li>
+							<li class="nav-item"><a href="#lain" data-ajax="false">Lainnya</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="col bg-n-white1" id="main" id="tabs">
-			<ul data-role="listview" data-inset="true" id="menusListView">
+			<div id="express_bowl" class="mt-1">
+				<ul id="menusListView">
+					<li data-role="list-divider" class="cat-space">Express Bowl</li>
 
-			</ul>
+				</ul>
+			</div>
+			<div id="spesial">
+				<ul id="menusListView">
+					<li data-role="list-divider" class="cat-space">Spesial</li>
+
+				</ul>
+			</div>
+			<div id="mie">
+				<ul id="menusListView">
+					<li data-role="list-divider" class="cat-space">Mie</li>
+
+				</ul>
+			</div>
+			<div id="minuman">
+				<ul id="menusListView">
+					<li data-role="list-divider" class="cat-space">Minuman</li>
+
+				</ul>
+			</div>
+			<div id="snack">
+				<ul id="menusListView">
+					<li data-role="list-divider" class="cat-space">Snack</li>
+
+				</ul>
+			</div>
+			<div id="lain">
+				<ul id="menusListView">
+					<li data-role="list-divider" class="cat-space">Lainnya</li>
+
+				</ul>
+			</div>
 		</div>
 
 	</div>

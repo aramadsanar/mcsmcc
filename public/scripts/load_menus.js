@@ -1,11 +1,11 @@
-$(document).ready(akuLoad);
+$(document).ready(loadMenus);
 
-/*function loadMenus(event) {
+function loadMenus(event) {
 
     //for each tabs, load the category data
-    $('div', '#tabs').each(function() {
+    $('div', '#myTab').each(function () {
         let id = $(this).attr('id');
-        
+
         if (id) {
             //neat jquery DOM tree traversal trick
             let category = $('#' + id);
@@ -25,34 +25,18 @@ function loadCategory(categoryControl) {
     $.ajax(
         {
             url: 'http://127.0.0.1:9000/api/menus/getByCategory/' + categoryName,
-            
             //success callback accepts only one param that is result?
             //jack up the success callback and reutilize old function
-            success: function(result) {
+            success: function (result) {
                 loadMenusDataToView(menuCategoryTab, result);
             }
         }
     )
 
-}*/
-
-function loadmenu() {
-
-    $.ajax(
-        {
-            url: 'http://127.0.0.1:9000/api/menus',
-
-            //success callback accepts only one param that is result?
-            //jack up the success callback and reutilize old function
-            success: function (result) {
-                //loadMenusDataToView(menuCategoryTab, result);
-                makeMenuControls(result);
-            }
-        }
-    )
 }
 
 //everything down here is obvious, no explanation needed
+
 function loadMenusDataToView(menuCategoryTab, result) {
     console.log(result)
     //let parsedResult = JSON.parse(result);
@@ -60,35 +44,23 @@ function loadMenusDataToView(menuCategoryTab, result) {
     for (let menu of result) {
         menuCategoryTab.append(makeMenuControls(menu));
     }
-
-    menuCategoryTab.listview('refresh')
 }
 
 function makeMenuControls(menu) {
     var htmlCode = `
-        <li><a href="/app/menu_detail/${menu['document_id']}" target="_self">
-            <img src="${menu['menu_image']}">
-        <h2>${menu['menu_name']}</h2>
-        <p>${menu['menu_price']}</p></a>
-            <a href="/app/menu_detail/${menu['document_id']}" target="_self" data-rel="popup" data-position-to="window" data-transition="pop">Purchase</a>
-        </li>
+    <div class="card col-md" style="margin: 10px">
+    <a href="/app/menu_detail/${menu['document_id']}" target="_self">
+        <img class="card-img-top" src="${menu['menu_image']}">
+        <div class="card-body">
+            <h3 class="card-title">${menu['menu_name']}</h3>
+            <h5 class="card-text">Rp. ${menu['menu_price']}</h5>
+            <a href="/app/menu_detail/${menu['document_id']}" target="_self" data-rel="popup" data-position-to="window" data-transition="pop" class="btn amado-btn margtop">Purchase</a>
+        </div>
+    </a>
+</div>
     `
 
-    var mView = $('#menusListView').append(htmlCode);
-    mView.listview('refresh');
-
-
-
-
-    // var htmlCode = `
-    // <li>
-    // 	<a href=">
-    // 		<h2></h2>
-    // 		<p><h3></h3></p>
-
-    // 	</a>
-    // </li>`
-    return mView;
+    return htmlCode;
 }
 
 function akuLoad() {
