@@ -9,36 +9,69 @@
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<script src="http://localhost:9000/app/scripts/view_order.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	 crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+	 crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="css/core-style.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:100,400,500,600,700" rel="stylesheet">
 </head>
 <body>
-	<div data-role="page" data-theme="a">
-		<div data-role="header" data-position="inline">
-			<h1>Your Order</h1>
+	<div class="main-content-wrapper d-flex clearfix">
+		<div class="mobile-nav">
+			<div class="amado-navbar-brand">
+				<a href="index.html"><img src="img/solaria.png" alt="" style="width: 45px"></a>
+			</div>
+			<div class="amado-navbar-toggler">
+				<span></span><span></span><span></span>
+			</div>
 		</div>
+		<header class="header-area clearfix shader">
+			<div class="nav-close">
+				<i class="fa fa-close" aria-hidden="true"></i>
+			</div>
+			<div class="logo">
+				<a href="index.html"><img src="img/solaria.png" alt="" style="width: 65px"></a>
+			</div>
+			<div style="padding-top: 150px;">
+				<h4 id="greetings"></h4>
+			</div>
+			<nav class="amado-nav" style="margin-top: 30px">
+				<ul>
+					<li><a href="/app/menus">Menu</a></li>
+					<li class="active"><a href="/app/viewOrder">Cart</a></li>
+				</ul>
+			</nav>
+		</header>
 
+		<div class="col bg-n-white1" id="cart">
+			<ul data-role="listview" data-inset="true" id="menusListView">
 
-
-		<!-- <div data-role="tabs" id="tabs"> -->
-
-			<!-- 
-				TODO:
-				
-				Refactor this mess into programmatically generated tabs! 
-				Current implementation is very mesy and prone to bugs when new categories added or removed.
-			-->
-
-			<div id="cart" >
-				<div data-role="content" data-theme="a">
-					<ul data-role="listview" data-inset="true" id="menusListView">
-						
-						
-					</ul>
-				</div>
-            </div>
-            
-	  	</div>
-
-		<!--  -->
+			</ul>
+		</div>
 	</div>
+
+	<script src="js/jquery/jquery-2.2.4.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/active.js"></script>
+	<script>
+		let mDate = new Date();
+		var hour = mDate.getHours();
+		var greet;
+
+		if (hour < 12)
+			greet = 'Good morning.';
+		else if (hour >= 12 && hour <= 17)
+			greet = 'Good afternoon.';
+		else if (hour >= 17 && hour <= 24)
+			greet = 'Good evening.';
+
+		document.getElementById('greetings').innerHTML = greet;
+	</script>
+	<script>
+		
+	</script>
 </body>
 </html>

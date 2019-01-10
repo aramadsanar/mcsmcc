@@ -100,13 +100,17 @@ function akuLoad() {
             console.log(result);
             for (let menu of result) {
                 var htmlCode = `
-        <li><a href="/app/menu_detail/${menu['document_id']}" target="_self">
-            <img src="${menu['menu_image']}">
-        <h2>${menu['menu_name']}</h2>
-        <p>${menu['menu_price']}</p></a>
-            <a href="/app/menu_detail/${menu['document_id']}" target="_self" data-rel="popup" data-position-to="window" data-transition="pop">Purchase</a>
-        </li>
-    `
+		<div class="card" style="margin: 10px">
+			<a href="/app/menu_detail/${menu['document_id']}" target="_self">
+				<img class="card-img-top" src="${menu['menu_image']}">
+				<div class="card-body">
+					<h2 class="card-title">${menu['menu_name']}</h2>
+					<h5 class="card-text">Rp. ${menu['menu_price']}</h5>
+					<a href="/app/menu_detail/${menu['document_id']}" target="_self" data-rel="popup" data-position-to="window" data-transition="pop" class="btn amado-btn margtop">Purchase</a>
+				</div>
+			</a>
+		</div>
+                `
                 $('#menusListView').append(htmlCode);
             }
 
