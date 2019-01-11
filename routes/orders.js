@@ -1,7 +1,7 @@
 const { insertOrder, validateOrder, orders } = require('../models/order');
 const express = require('express');
 const router = express.Router();
-
+const _ = require('lodash')
 
 router.get('/', async (req, res) => {
     let orders = await getAllOrders();
@@ -21,7 +21,11 @@ router.get('/:id', async(req, res) => {
 
 router.post('/', async(req, res) => {
     console.log(req.body)
-    const {error} = validateOrder(req.body);
+
+
+    let body = _.pick(req.body, ['name', 'tableNumber', 'menus']);
+
+    const {error} = validateOrder(body);
     if (error) return res.status(400).send(error.message);
 
     const {name, tableNumber, menus} = req.body;

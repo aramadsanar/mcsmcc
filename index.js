@@ -12,6 +12,10 @@ app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+    res.redirect('/app/menus')
+});
+
 app.use('/api/menus', menus);
 app.use('/api/deviceinit', deviceinit);
 app.use('/api/orders', orders);

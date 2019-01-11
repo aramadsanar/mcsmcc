@@ -22,4 +22,5 @@ router.get('/submitOrder', (req, res) => {
 router.get('/viewOrder', (req, res) => {
     res.render('ViewOrder')
 })
+
 module.exports = router;

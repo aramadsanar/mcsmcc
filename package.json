@@ -17,6 +17,7 @@
     "firebase-admin": "^6.3.0",
     "joi": "^14.3.0",
     "joi-objectid": "^2.0.0",
+    "lodash": "^4.17.11",
     "mongoose": "^5.3.15"
   }
 }

@@ -1,5 +1,5 @@
 $(document).ready(loadMenuIntoView)
-
+let CURRENT_MENU_PRICE = 0;
 function back() {
     window.location.replace('http://localhost:9000/app/menus');
 }
@@ -27,7 +27,7 @@ function loadMenuIntoView() {
             let updateEntry = {
                 menuId: CURRENT_MENU_ID,
                 quantity: $('#orderCount').val(),
-                price: parseInt($('#menuPrice').text())
+                price: CURRENT_MENU_PRICE
             };
             if (order) {
                 let idxOfItemInOrder = order['menus'].findIndex(
@@ -78,5 +78,7 @@ function renderCourseData(result) {
     menuName.html(parsedJSON['menu_name']);
     menuNameTittel.html(parsedJSON['menu_name']);
     menuPrice.html("Rp. " + parsedJSON['menu_price']);
+    CURRENT_MENU_PRICE = parseInt(parsedJSON['menu_price'])
+
     // courseDescription.html(parsedJSON['description'])
 }
