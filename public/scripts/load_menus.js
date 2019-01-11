@@ -48,7 +48,7 @@ function loadMenusDataToView(menuCategoryTab, result) {
 
 function makeMenuControls(menu) {
     var htmlCode = `
-    <div class="card col-md" style="margin: 10px">
+    <div class="card col-md" style="margin-bottom: 10px">
     <a href="/app/menu_detail/${menu['document_id']}" target="_self">
         <img class="card-img-top" src="${menu['menu_image']}">
         <div class="card-body">

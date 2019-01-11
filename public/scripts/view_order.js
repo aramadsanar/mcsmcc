@@ -8,14 +8,14 @@ function loadCartItems(event) {
     ORDER = order;
     if (order) {
         let items = order['menus']
-
+        //let TOTAL_CART;
         for (let item of items) {
             loadItem(cartList, item, item['quantity']);
             TOTAL_CART += item['price'] * item['quantity'];
         }
 
-        insertCartTotal(cartList)
-
+        //insertCartTotal(cartList)
+        
     }
 
     else {
@@ -66,22 +66,24 @@ function loadItemDataToView(cartList, result, quantity) {
     cartList.append(makeMenuControls(result, quantity));
     // }
 
-    menuCategoryTab.listview('refresh')
+    //menuCategoryTab.listview('refresh')
 }
 
 function makeMenuControls(menu, quantity) {
+    var total_price = menu['menu_price'] * quantity;
     var htmlCode = `
-        <li><a href="/app/menu_detail/${menu['document_id']}" target="_self">
-            <img src="${menu['menu_image']}">
-        <h2>${menu['menu_name']}</h2>
-        <h2>${quantity}</h2>
-        <p>${menu['menu_price'] * quantity}</p></a>
-           
-        </li>
+    <div class="card" style="margin-top: 20px">
+					<img class="card-img-top" src="${menu['menu_image']}">
+					<div class="card-body">
+                        <h3 class="card-title">${menu['menu_name']}</h3>
+                        <h5 class="card-text">Rp. ${menu['menu_price']}</h5>
+						<p class="card-text">Jumlah &nbsp; &nbsp; &nbsp; <button type="button" class="btn btn-outline-primary" style="padding: 1px 20px"> - </button> &nbsp; &nbsp; ${quantity} &nbsp; &nbsp; <button type="button" class="btn btn-outline-primary" style="padding: 1px 20px"> + </button></p>
+						<p>Total Price Rp. ${total_price}</p></a>
+					</div>
+				</div>
+
     `
-
-
-
+    
 	// var htmlCode = `
 	// <li>
 	// 	<a href=">
@@ -93,7 +95,13 @@ function makeMenuControls(menu, quantity) {
     return htmlCode;
 }
 
+function printTotal(total){
+    console.log("ini total "+total)
+    //cartList.append(`<li data-role="list-divider">${total}`);
+}
+
 function insertCartTotal(cartList) {
+    console.log(TOTAL_CART)
     cartList.append(`<li data-role="list-divider">${TOTAL_CART}
     ${ORDER['name']}
     ${ORDER['tableNumber']}</li>`);

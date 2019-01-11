@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Welcome!</title>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.js" integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 	 crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	 crossorigin="anonymous">
@@ -39,25 +39,27 @@
 			</div>
 			<nav class="amado-nav" style="margin-top: 30px">
 				<ul>
-					<li class="active"><a href="/app/menus">Menu</a></li>
-					<li><a href="/app/viewOrder">Cart</a></li>
+					<li class="active"><a href="http://localhost:9000/app/menus">Menu</a></li>
+					<li><a href="http://localhost:9000/app/viewOrder">Cart <span id="badgecart" class="badge badge-danger">!</span></a></li>
 				</ul>
 			</nav>
 		</header>
 
 		<div class="col bg-n-white1" id="myTab">
-			<div class="sticky-offset">
-				<div class="widget catagory mb-50 mt-5">
-					<h6 class="widget-title" style="margin-left:20px;">Catagories</h6>
-					<div class="catagories-menu">
-						<ul class="nav nav-tabs">
-							<li class="nav-item"><a href="#express_bowl">Express Bowl</a></li>
-							<li class="nav-item"><a href="#spesial" data-ajax="false">Spesial</a></li>
-							<li class="nav-item"><a href="#mie" data-ajax="false">Mie</a></li>
-							<li class="nav-item"><a href="#minuman" data-ajax="false">Minuman</a></li>
-							<li class="nav-item"><a href="#snack" data-ajax="false">Snack</a></li>
-							<li class="nav-item"><a href="#lain" data-ajax="false">Lainnya</a></li>
-						</ul>
+			<div class="card-me sticky-top">
+				<div class="sticky-offset">
+					<div class="widget catagory mt-2">
+						<h6 class="widget-title">Catagories</h6>
+						<div class="catagories-menu">
+							<ul class="nav">
+								<li class="nav-item"><a href="#express_bowl">Express Bowl</a></li>
+								<li class="nav-item"><a href="#spesial" data-ajax="false">Spesial</a></li>
+								<li class="nav-item"><a href="#mie" data-ajax="false">Mie</a></li>
+								<li class="nav-item"><a href="#minuman" data-ajax="false">Minuman</a></li>
+								<li class="nav-item"><a href="#snack" data-ajax="false">Snack</a></li>
+								<li class="nav-item"><a href="#lain" data-ajax="false">Lainnya</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>

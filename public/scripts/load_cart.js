@@ -23,7 +23,7 @@ function loadCartItems(event) {
     // //for each tabs, load the category data
     // $('div', '#tabs').each(function() {
     //     let id = $(this).attr('id');
-        
+
     //     if (id) {
     //         //neat jquery DOM tree traversal trick
     //         let category = $('#' + id);
@@ -43,10 +43,10 @@ function loadItem(cartList, item, quantity) {
     $.ajax(
         {
             url: 'http://127.0.0.1:9000/api/menus/' + item.menuId,
-            
+
             //success callback accepts only one param that is result?
             //jack up the success callback and reutilize old function
-            success: function(result) {
+            success: function (result) {
                 loadItemDataToView(cartList, result, quantity);
             }
         }
@@ -58,36 +58,38 @@ function loadItem(cartList, item, quantity) {
 
 function loadItemDataToView(cartList, result, quantity) {
     console.log(result)
-    
+
     //let parsedResult = JSON.parse(result);
-    
+
     // for (let menu of result) {
     cartList.append(makeMenuControls(result, quantity));
     // }
 
-    menuCategoryTab.listview('refresh')
+    //menuCategoryTab.listview('refresh')
 }
 
 function makeMenuControls(menu, quantity) {
     var htmlCode = `
-        <li><a href="/app/menu_detail/${menu['document_id']}" target="_self">
-            <img src="${menu['menu_image']}">
-        <h2>${menu['menu_name']}</h2>
-        <h2>${quantity}</h2>
-        <p>${menu['menu_price'] * quantity}</p></a>
-           
-        </li>
+
+    <div class="card" style="margin: 10px">
+					<img class="card-img-top" src="${menu['menu_image']}">
+					<div class="card-body">
+						<h3 class="card-title">${menu['menu_name']}</h3>
+						<h5 class="card-text">Jumlah ${quantity}</h5>
+						<p>Total Price ${menu['menu_price'] * quantity}</p></a>
+					</div>
+				</div>
     `
 
 
 
-	// var htmlCode = `
-	// <li>
-	// 	<a href=">
+    // var htmlCode = `
+    // <li>
+    // 	<a href=">
     // 		<h2></h2>
     // 		<p><h3></h3></p>
-    		
-	// 	</a>
+
+    // 	</a>
     // </li>`
     return htmlCode;
 }

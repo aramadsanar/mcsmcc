@@ -1,33 +1,88 @@
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>jQuery Mobile: Theme Download</title>
-	<link rel="stylesheet" href="http://localhost:9000/app/themes/pertemuan2.min.css" />
-	<link rel="stylesheet" href="http://localhost:9000/app/themes/jquery.mobile.icons.min.css" />
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<title id="menuNameTittle"></title>
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+	 crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	 crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+	 crossorigin="anonymous"></script>
 	<script src="http://localhost:9000/app/scripts/load_menu_detail.js"></script>
+	<link rel="stylesheet" href="http://localhost:9000/app/css/core-style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+	 crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:100,400,500,600,700" rel="stylesheet">
 </head>
+
 <body>
-	<div data-role="page" data-theme="a">
-		<div data-role="header" data-position="inline">
-			<h1 id="menuName">Main Course Title</h1>
+
+	<div class="main-content-wrapper d-flex clearfix">
+		<div class="mobile-nav">
+			<div class="amado-navbar-brand">
+				<a href="index.html"><img src="http://localhost:9000/app/img/solaria.png" alt="" style="width: 45px"></a>
+			</div>
+			<div class="amado-navbar-toggler">
+				<span></span><span></span><span></span>
+			</div>
 		</div>
-		<div data-role="content" data-theme="a">
+		<header class="header-area clearfix shader">
+			<div class="nav-close">
+				<i class="fas fa-times" aria-hidden="true"></i>
+			</div>
+			<div class="logo">
+				<a href="index.html"><img src="http://localhost:9000/app/img/solaria.png" alt="" style="width: 65px"></a>
+			</div>
+			<div style="padding-top: 150px;">
+				<h4 id="greetings"></h4>
+			</div>
+			<nav class="amado-nav" style="margin-top: 30px">
+				<ul>
+					<li class="active"><a href="http://localhost:9000/app/menus">Menu</a></li>
+					<li><a href="http://localhost:9000/app/viewOrder">Cart <span id="badgecart" class="badge badge-danger">!</span></a></li>
+				</ul>
+			</nav>
+		</header>
+		<div class="col bg-n-white1">
+			<button class="btn amado-btn back" onclick="back()">Back</button>
 			<ul data-role="listview" data-inset="true" id="menuView">
-				<img src="#" frameborder="0" id="menuImage" ></iframe>
-				<!-- <li data-role="list-divider" id="menuName" style="text-align: center">Menu Name</li> -->
-				<li data-role="list-divider" id="menuPrice">Price</li>
-				<li data-role="list-divider">
-					<input type="number" data-clear-btn="true" name="number-4" pattern="[0-9]*" id="orderCount" value="">
-				</li>
-                <li data-role="list-divider">
-                        <button id="addToCartButton">Add to Cart</button>
-                </li>
+				<div class="card" style="margin: 10px">
+					<img class="card-img-top" id="menuImage">
+					<div class="card-body">
+						<h3 class="card-title" id="menuName"></h3>
+						<h5 class="card-text" id="menuPrice">Rp. </h5>
+						<label for="basic-url" class="mt-3">Masukan Jumlah Item</label>
+						<div class="input-group mb-3">
+						  <input type="number" class="form-control" id="orderCount" name="number-4" pattern="[0-9]*" data-clear-btn="true" placeholder="0">
+						</div>
+
+						<input type="button" id="addToCartButton" class="btn amado-btn margtop" value="Add to cart">
+					</div>
+				</div>
 			</ul>
 		</div>
 	</div>
+
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/active.js"></script>
+	<script>
+		let mDate = new Date();
+		var hour = mDate.getHours();
+		var greet;
+
+		if (hour < 12)
+			greet = 'Good morning.';
+		else if (hour >= 12 && hour <= 17)
+			greet = 'Good afternoon.';
+		else if (hour >= 17 && hour <= 24)
+			greet = 'Good evening.';
+
+		document.getElementById('greetings').innerHTML = greet;
+	</script>
 </body>
+
 </html>
