@@ -1,45 +1,53 @@
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>jQuery Mobile: Theme Download</title>
-	<link rel="stylesheet" href="http://localhost:9000/app/themes/pertemuan2.min.css" />
-	<link rel="stylesheet" href="http://localhost:9000/app/themes/jquery.mobile.icons.min.css" />
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<title>Submit</title>
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+	 crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	 crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+	 crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="css/core-style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+	 crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:100,400,500,600,700" rel="stylesheet">
 	<script src="http://localhost:9000/app/scripts/submit_order.js"></script>
 </head>
+
 <body>
-	<div data-role="page" data-theme="a">
-		<div data-role="header" data-position="inline">
-			<h1>Submit Order</h1>
-		</div>
+	<div class="panel-wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel-wrapper-form">
 
+						<div class="input-group form-group mb-3 float-right">
+							<a onclick="goHome()"><i id="goHome" class="fas fa-times fa-2x"></i></a>
+						</div>
 
+						<h1 class="tittle-panel">Input Yout Name and Your Table Number</h1>
 
-		<!-- <div data-role="tabs" id="tabs"> -->
+						<label>Name</label>
+						<div class="input-group form-group mb-3">
+							<input type="text" class="form-control" placeholder="jhon" id="name" required>
+						</div>
 
-			<!-- 
-				TODO:
-				
-				Refactor this mess into programmatically generated tabs! 
-				Current implementation is very mesy and prone to bugs when new categories added or removed.
-			-->
+						<label>Table number</label>
+						<div class="input-group form-group mb-3">
+							<input type="number" class="form-control" placeholder="0" id="tableNumber" required>
+						</div>
 
-			<div id="cart" >
-				<div data-role="content" data-theme="a">
-					<ul data-role="listview" data-inset="true" id="menusListView">
-						<input type="text" name="" id="name">
-                        <input type="text" name="" id="tableNumber">
-                        <button id="submitOrder">Submit</button>
-					</ul>
+						<button id="submitOrder" class="btn btn-amdo-primary btn-lg btn-block">Submit</button>
+
+					</div>
 				</div>
-            </div>
-            
-	  	</div>
-
-		<!--  -->
+			</div>
+		</div>
 	</div>
+
 </body>
+
 </html>

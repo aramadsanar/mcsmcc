@@ -1457,3 +1457,72 @@ img {
   border-color:#A62077;
   font-weight: bold;
 }
+
+.panel-wrapper {
+  width: 30%;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .panel-wrapper {
+    width: 30%;
+  } } 
+@media only screen and (max-width: 767px) {
+  .panel-wrapper {
+    width: 100%;
+  } }
+
+.panel-wrapper-form {
+  margin: 0 auto;
+}
+
+.panel-wrapper-form .tittle-panel {
+  color: #0e0e0e;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.btn-amdo-primary{
+  background-color:#A62077;
+  font-weight: bold;
+  color: white;
+  border: none;
+}
+
+.btn-amdo-primary:hover{
+  background-color:rgb(88, 12, 62);
+  font-weight: bold;
+  color: white;
+  border: none;
+}
+
+.btn-amdo-primary:focus{
+  background-color:rgb(206, 40, 148);
+  font-weight: bold;
+  color: white;
+  border: none;
+}
+
+.btn-amdo-primary:active{
+  background-color:rgb(206, 40, 148);
+  font-weight: bold;
+  color: white;
+  border: none;
+}
+
+.go_home {
+  color: #000000;
+  font-weight: normal;
+  margin-top: 50px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.go_home:hover {
+  color: #A62077;
+}
+
+#goHome{
+  cursor: pointer;
+}

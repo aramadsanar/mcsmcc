@@ -83,3 +83,13 @@ function renderCourseData(result) {
 
     // courseDescription.html(parsedJSON['description'])
 }
+
+function badgeCart(){
+    let badge = $('#badgecart');
+    let validateBadge = localStorage.getItem('order') === null ? badge.hide() : badge.show();
+    return validateBadge;
+}
+
+$(document).ready(() => {
+    badgeCart();
+})

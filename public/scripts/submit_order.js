@@ -11,8 +11,10 @@ function getNameAndTableNumber() {
     let name = $('#name').val();
     let tableNumber = $('#tableNumber').val();
 
-
-    let order = JSON.parse(
+    if (name == "" && tableNumber == ""){
+        alert("Empty")
+    }else{
+        let order = JSON.parse(
         localStorage.getItem('order')
     )
 
@@ -20,6 +22,7 @@ function getNameAndTableNumber() {
     order['tableNumber'] = tableNumber;
 
     localStorage.setItem('order', JSON.stringify(order));
+    }
 }
 
 
@@ -49,6 +52,11 @@ function submitPostOrder() {
 
 
 function notifyOrderSubmissionSuccess() {
+    localStorage.removeItem('order')
     alert('Your order has been submitted')
-    window.location.href = 'http://localhost:9000/app/viewOrder'
+    window.location.href = 'http://localhost:9000/app/menus'
+}
+
+function goHome(){
+    window.location.replace('http://localhost:9000/app/menus')
 }

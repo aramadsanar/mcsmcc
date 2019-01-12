@@ -90,3 +90,13 @@ function akuLoad() {
     }
     )
 }
+
+function badgeCart(){
+    let badge = $('#badgecart');
+    let validateBadge = localStorage.getItem('order') === null ? badge.hide() : badge.show();
+    return validateBadge;
+}
+
+$(document).ready(() => {
+    badgeCart();
+})

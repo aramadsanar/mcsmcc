@@ -9,10 +9,12 @@ function loadCartItems(event) {
     if (order) {
         // let items = order['menus']
         //let TOTAL_CART;
+        $('#card_me').show();
         drawCartList(cartList, order['menus'])
     }
 
     else {
+        $('#card_me').hide();
         cartList.append('Your cart is empty!')
     }
     // //for each tabs, load the category data
@@ -197,3 +199,17 @@ function insertCartTotal(cartList) {
 
     $('#totalPrice').html('Rp. ' + TOTAL_CART)
 }
+
+function onProcess(){
+    window.location.href='http://localhost:9000/app/submitOrder';
+}
+
+function badgeCart(){
+    let badge = $('#badgecart');
+    let validateBadge = localStorage.getItem('order') === null ? badge.hide() : badge.show();
+    return validateBadge;
+}
+
+$(document).ready(() => {
+    badgeCart();
+})
