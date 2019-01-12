@@ -3,19 +3,13 @@ let TOTAL_CART = 0;
 let ORDER = null;
 function loadCartItems(event) {
 
-    let cartList = $('#menusListView');
+    let cartList = $('#menuItemsListView');
     let order = JSON.parse(localStorage.getItem('order'))
     ORDER = order;
     if (order) {
-        let items = order['menus']
+        // let items = order['menus']
         //let TOTAL_CART;
-        for (let i=0; i < items.length; i++) {
-            loadItem(cartList, items[i], items[i]['quantity'], i);
-            TOTAL_CART += items[i]['price'] * items[i]['quantity'];
-        }
-
-        insertCartTotal(cartList)
-        
+        drawCartList(cartList, order['menus'])
     }
 
     else {
@@ -31,6 +25,18 @@ function loadCartItems(event) {
     //         loadCategory(category)
     //     }
     // })
+}
+
+async function drawCartList(cartList, items) {
+    cartList.html('')
+    for (let i=0; i < items.length; i++) {
+        loadItem(cartList, items[i], items[i]['quantity'], i);
+        TOTAL_CART += items[i]['price'] * items[i]['quantity'];
+    }
+
+    TOTAL_CART = updateTotalPrice()
+    // insertCartTotal(cartList)
+
 }
 
 function loadItem(cartList, item, quantity, index) {
@@ -54,23 +60,36 @@ function loadItem(cartList, item, quantity, index) {
     )
 
 }
-
+//this is in dire need of refactoring.
 function incrementOrderQuantity(index, quantityLabelTextViewId, itemTotalPriceLabelTextViewId, incrementBy) {
     let currentOrder = JSON.parse(JSON.stringify(ORDER));
 
     let currentQuantity = parseInt(currentOrder['menus'][index]['quantity'], 10)
+    
+    //update the quantity first
     let newQuantity = (currentQuantity += incrementBy);
-
     currentOrder['menus'][index]['quantity'] = newQuantity;
 
+    //update accordingly
+    if (newQuantity > 0) {
+        $(quantityLabelTextViewId).html(`&nbsp; &nbsp; ${newQuantity} &nbsp; &nbsp;`);
+        $(itemTotalPriceLabelTextViewId).html(`Total Price Rp. ${newQuantity * ORDER['menus'][index]['price']}`)
+    }
+ 
+    
+    else {
+        currentOrder['menus'] = currentOrder['menus'].filter((v, idx, arr) => {
+            return idx != index;
+        });
+        
+        drawCartList($('#menuItemsListView'), currentOrder['menus'])
+    }
+
+    //commit it to the local storage
     localStorage.setItem('order', JSON.stringify(currentOrder));
-    ORDER = currentOrder;
-
-    $(quantityLabelTextViewId).html(`&nbsp; &nbsp; ${newQuantity} &nbsp; &nbsp;`);
-    $(itemTotalPriceLabelTextViewId).html(`Total Price Rp. ${newQuantity * ORDER['menus'][index]['price']}`)
-
-    updateTotalPrice()
-
+    ORDER = JSON.parse(JSON.stringify(currentOrder));
+    updateTotalPrice();
+    
     return currentQuantity;
 }
 
