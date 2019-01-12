@@ -30,6 +30,7 @@ function loadMenuIntoView() {
                 price: CURRENT_MENU_PRICE
             };
             if (order) {
+                console.log(order)
                 let idxOfItemInOrder = order['menus'].findIndex(
                     (element) => {
                         return element['menuId'] == CURRENT_MENU_ID;
