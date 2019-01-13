@@ -1,7 +1,7 @@
 $(document).ready(loadMenuIntoView)
 let CURRENT_MENU_PRICE = 0;
 function back() {
-    window.location.replace('http://localhost:9000/app/menus');
+    window.location.replace('http://35.240.245.237:3000/app/menus');
 }
 
 let CURRENT_MENU_ID = ''
@@ -10,7 +10,7 @@ function loadMenuIntoView() {
     CURRENT_MENU_ID = menu_id
     console.log(menu_id)
     $.ajax({
-        url: 'http://127.0.0.1:9000/api/menus/' + menu_id,
+        url: 'http://35.240.245.237:3000/api/menus/' + menu_id,
         method: 'GET',
         //data, just use dict!
         success: renderCourseData
@@ -59,7 +59,7 @@ function loadMenuIntoView() {
             }
 
             localStorage.setItem('order', JSON.stringify(order));
-            window.location.replace('http://localhost:9000/app/viewOrder');
+            window.location.replace('http://35.240.245.237:3000/app/viewOrder');
         }
 
     })
