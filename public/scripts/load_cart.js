@@ -42,7 +42,7 @@ function loadItem(cartList, item, quantity) {
 
     $.ajax(
         {
-            url: 'http://35.240.245.237:3000/api/menus/' + item.menuId,
+            url: 'http://127.0.0.1:9000/api/menus/' + item.menuId,
 
             //success callback accepts only one param that is result?
             //jack up the success callback and reutilize old function
