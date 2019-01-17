@@ -24,7 +24,7 @@ function loadCategory(categoryControl) {
 
     $.ajax(
         {
-            url: 'http://35.240.245.237:3000/api/menus/getByCategory/' + categoryName,
+            url: 'http://127.0.0.1:9000/api/menus/getByCategory/' + categoryName,
             //success callback accepts only one param that is result?
             //jack up the success callback and reutilize old function
             success: function (result) {
@@ -65,7 +65,7 @@ function makeMenuControls(menu) {
 
 function akuLoad() {
     $.ajax({
-        url: 'http://35.240.245.237:3000/api/menus',
+        url: 'http://127.0.0.1:9000/api/menus',
         success: function (result) {
             //loadMenusDataToView(menuCategoryTab, result);
             //makeMenuControls(result);
