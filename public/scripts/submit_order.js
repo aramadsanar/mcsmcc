@@ -32,7 +32,7 @@ function submitPostOrder() {
 
     $.ajax({
         type: "POST",
-        url: 'http://35.240.245.237:3000/api/orders',
+        url: 'http://127.0.0.1:9000/api/orders',
         data: JSON.stringify(JSON.parse(order)),
         success: notifyOrderSubmissionSuccess,
         dataType: "json",
@@ -54,9 +54,9 @@ function submitPostOrder() {
 function notifyOrderSubmissionSuccess() {
     localStorage.removeItem('order')
     alert('Your order has been submitted')
-    window.location.href = 'http://35.240.245.237:3000/app/menus'
+    window.location.href = 'http://127.0.0.1:9000/app/menus'
 }
 
 function goHome(){
-    window.location.replace('http://35.240.245.237:3000/app/menus')
+    window.location.replace('http://127.0.0.1:9000/app/menus')
 }
